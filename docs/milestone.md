@@ -45,7 +45,7 @@
     <h2 align="middle">Current Progress</h2>
     <p> So far, we have accomplished: </p>
         <ul>
-            <li>Familiarizing ourself with OpenGL basics.</li>
+            <li>Familiarizing ourselves with OpenGL basics.</li>
             <ul>
                 <li>Generating a window.</li>
                 <li>Populating the environment with objects.</li>
@@ -56,7 +56,7 @@
             <li>Generating a random maze using DFS.</li>
             <ul>
                 <li>Starting with a grid of individually walled-off cells, the algorithm randomly traverses through the cells, removing walls as it goes. It stops the traversal when a cell has no unvisited neighbors (i.e. a dead end has been reached). </li>
-                <li> Upon reaching a dead end, the algorithm backtracks until there is a cell with an unvisted neighbor and continues traversing from there. </li>
+                <li> Upon reaching a dead end, the algorithm backtracks until there is a cell with an unvisited neighbor and continues traversing from there. </li>
                 <li> The process is repeated until all cells have been visited. </li>
             </ul>
             <li>Gathering resources for our next steps. (Resources linked below). </li>
