@@ -117,7 +117,7 @@
         <li> <a href = "http://nehe.gamedev.net/tutorial/loading_and_moving_through_a_3d_world/22003/">Loading and Moving through a 3D world </li>
         <li><a href = "https://stackoverflow.com/questions/8963223/opengl-first-person-camera-rotation-and-translation">First Person Camera Rotation and Translation</li>
         <li><a href = "https://www.haroldserrano.com/blog/anatomy-of-light-in-computer-graphic">Lights in OpenGL </li>
-</ul>
+    </ul>
 
 
 
