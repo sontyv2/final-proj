@@ -35,7 +35,7 @@
 
         <p>Team Members:</p>
         <ul> 
-            <li>Sonthaya Visuthikraisee, 26123016.</li>
+            <li>Sonthaya Visuthikraisee, 26123016</li>
             <li>Julie Han, 26022682</li>
             <li>Varsha Ramakrishnan, 3031797029</li>
         </ul>
