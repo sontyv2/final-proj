@@ -110,13 +110,13 @@
 
     <h2 align="middle">RESOURCES</h2>
     <ul>
-        <li> <a href = "https://www.3dgep.com/introduction-opengl/"> Basic OpenGL </li>
-        <li> <a href ="https://www.researchgate.net/publication/283255927_Developing_Simple_Games_with_OpenGL"> Source/reference code </li>
-        <li> <a href = "http://info.ee.surrey.ac.uk/Teaching/Courses/CGI/assignment12_maze/assignment12_maze.html"> A Spec For a 3D Maze Game Assignment: </li>
-        <li> <a href = "https://www.codeproject.com/script/articles/articleversion.aspx?aid=192956&av=292999"> Random 3D First Person Maze in OpenGL</li>
-        <li> <a href = "http://nehe.gamedev.net/tutorial/loading_and_moving_through_a_3d_world/22003/">Loading and Moving through a 3D world </li>
-        <li><a href = "https://stackoverflow.com/questions/8963223/opengl-first-person-camera-rotation-and-translation">First Person Camera Rotation and Translation</li>
-        <li><a href = "https://www.haroldserrano.com/blog/anatomy-of-light-in-computer-graphic">Lights in OpenGL </li>
+        <li> <a href = "https://www.3dgep.com/introduction-opengl/"> Basic OpenGL </a> </li>
+        <li> <a href ="https://www.researchgate.net/publication/283255927_Developing_Simple_Games_with_OpenGL"> Source/reference code  </a> </li>
+        <li> <a href = "http://info.ee.surrey.ac.uk/Teaching/Courses/CGI/assignment12_maze/assignment12_maze.html"> A Spec For a 3D Maze Game Assignment  </a> </li>
+        <li> <a href = "https://www.codeproject.com/script/articles/articleversion.aspx?aid=192956&av=292999"> Random 3D First Person Maze in OpenGL  </a> </li>
+        <li> <a href = "http://nehe.gamedev.net/tutorial/loading_and_moving_through_a_3d_world/22003/">Loading and Moving through a 3D world </a>  </li>
+        <li><a href = "https://stackoverflow.com/questions/8963223/opengl-first-person-camera-rotation-and-translation">First Person Camera Rotation and Translation </a> </li>
+        <li><a href = "https://www.haroldserrano.com/blog/anatomy-of-light-in-computer-graphic">Lights in OpenGL  </a> </li>
     </ul>
 
 
