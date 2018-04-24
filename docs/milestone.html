@@ -82,7 +82,7 @@
                 </td>
                 <td>
                     <img src="images/walltex.jpg" width="480px" height="360"/>
-                    <figcaption align="middle">Brick texture we plan to use for the maze walls.</figcaption>
+                    <figcaption align="middle">Texture we plan to use for the maze walls.</figcaption>
                 </td>                
             </tr>
             <tr>
