@@ -132,7 +132,7 @@
         </ul>
     </ul>
 
-    <p> We are currently about a week behind our originally planned schedule. We have updated the schedule as follows: </p>
+    <p> We are currently a few days behind our originally planned schedule. We have updated the schedule as follows: </p>
     <ul>
         <li> <b>4/23 - 4/24:</b> </li>
         <ul>
