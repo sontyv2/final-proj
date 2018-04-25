@@ -14,6 +14,7 @@ def make_maze(w = 16, h = 8):
             if vis[yy][xx]: continue
             if xx == x: hor[max(y, yy)][x] = "100"
             if yy == y: ver[y][max(x, xx)] = "000"
+
             walk(xx, yy)
  
     walk(randrange(w), randrange(h))
@@ -31,3 +32,4 @@ def write_to_file(text):
  
 if __name__ == '__main__':
     write_to_file(make_maze())
+
