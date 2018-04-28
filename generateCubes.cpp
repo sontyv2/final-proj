@@ -3,6 +3,7 @@
 #include <utility>
 #include <vector>
 #include <fstream>
+#include <Python.h>
 
 #include "CGL/include/CGL/vector3D.h"
 #include "CGL/include/CGL/vector2D.h"
@@ -13,6 +14,25 @@ using std::swap;
 using std::vector;
 using namespace std;
 using namespace CGL;
+
+void callPython() {
+	Py_Initialize();
+	PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pWidth, *pHeight;
+	pName = PyString_FromString("mazegen");
+
+	pModule = PyImport_Import(pName);
+	pDict = PyModule_GetDict(pModule);
+	pFunc = PyDict_GetItemString(pDict, "make_maze");
+	pArgs = PyTuple_New(2);
+	pWidth = PyInt_FromLong(16);
+	pHeight = PyInt_FromLong(8);
+	PyTuple_SetItem(pArgs, 0, pWidth);
+	PyTuple_SetItem(pArgs, 1, pHeight);
+	PyObject_CallObject(pFunc, pArgs);
+
+	Py_Finalize();
+
+}
 
 void mazeboxCoords(Vector3D box_dimensions, string filename) {
 
