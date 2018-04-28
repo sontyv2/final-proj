@@ -29,6 +29,9 @@ def write_to_file(text):
     file = open("maze.txt", "w")
     file.write(text)
     file.close()
+
+def to_call(width, height):
+    write_to_file(make_maze(width, height))
  
 if __name__ == '__main__':
     write_to_file(make_maze())
