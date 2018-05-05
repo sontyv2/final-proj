@@ -36,7 +36,7 @@
 <h2 align="middle">Abstract</h2>
 <!-- A paragraph summary of the entire project. -->
 
-<p>For our final project, we created an OpenGL video game. The game is a first person 3D maze in which the player tries to navigate to the maze’s exit. The maze is procedurally generated and consists of three different wall types: normal walls, mirror walls, and glass walls. There are also 5 powerups that are randomly placed throughout the maze that give the player the following abilities: viewing the maze from a bird's-eye view, highlighting glass walls, highlighting mirror walls, turning mirror walls opaque, and turning glass walls opaque. Finally, the player is provided with a laser pointer that follows the direction the player is facing. The laser interacts with the mirror and glass walls, bouncing off and passing through them respectively.</p>
+<p>For our final project, we created an OpenGL video game. The game is a first person 3D maze in which the player tries to navigate to the maze’s exit. The maze is procedurally generated and consists of three different wall types: opaque walls, mirror walls, and glass walls. There are also 5 powerups that are randomly placed throughout the maze that give the player the following abilities: viewing the maze from a bird's-eye view, highlighting glass walls, highlighting mirror walls, turning mirror walls opaque, and turning glass walls opaque.</p>
 
 
 <h2 align="middle">Technical approach</h2>
@@ -46,7 +46,7 @@ A description of lessons learned. -->
 
 <h3 align="left">Maze generation</h3>
 
-<p> The maze is procedurally generated using a <a href="https://rosettacode.org/wiki/Maze_generation#Python">Python script</a> that runs the following DFS Algorithm: </p>
+<p> The maze is procedurally generated using a <a href="https://rosettacode.org/wiki/Maze_generation#Python">Python script</a> that runs the following DFS algorithm: </p>
 <ul>
     <li>Starting with a grid of individually walled-off cells, the algorithm randomly traverses through the cells, removing walls as it goes. It stops the traversal when a cell has no unvisited neighbors (i.e. a dead end has been reached). </li>
     <li> Upon reaching a dead end, the algorithm backtracks until there is a cell with an unvisited neighbor and continues traversing from there. </li>
@@ -60,7 +60,7 @@ A description of lessons learned. -->
         <li>The boundaries of the maze are always made of opaque walls; otherwise, a wall has a 1/2 chance of being opaque, 1/4 of being a mirror, and 1/4 chance of being glass.</li>
     </ul>
     <li>An entrance and exit have been added to the maze.</li>
-    <li>The algorithm randomly places 4 powerups in the maze, which are represented by a 4.</li>
+    <li>There are 5 powerups in the maze. The algorithm randomly places 4 of them, which are represented by 4's.</li>
     <ul>
         <li>The first powerup is always located at the entrance of the maze, so it is not randomly placed by the maze generation algorithm.</li>
     </ul>
@@ -85,7 +85,7 @@ A description of lessons learned. -->
 
 <h3 align="left">First-person camera movement</h3>
 
-<p>The matrix representing the <a href="https://learnopengl.com/Getting-started/Camera">view/camera space</a> is derived from the following vectors: the camera position, the camera direction, the right axis, and the up axis. Given the position, direction, and up vectors, GLM's lookAt function creates this matrix for us. By modifying the camera position by a constant distance scaled by some speed every time a direction key &lt;WASD&gt; is pressed, we create the "walking around" effect of the camera. The "looking around" effect of the mouse is created by making use of the pitch and yaw Euler angles. This accomplished by finding the offset of the mouse's position from the last frame from which the pitch and yaw is derived, constraining the pitch values, and calculating the direction vector.</p>
+<p>The matrix representing the <a href="https://learnopengl.com/Getting-started/Camera">view/camera space</a> is derived from the following vectors: the camera position, the camera direction, the right axis, and the up axis. Given the position, direction, and up vectors, GLM's lookAt function creates this matrix for us. By modifying the camera position by a constant distance scaled by some speed every time a direction key &lt;WASD&gt; is pressed, we create the "walking around" effect of the camera. The "looking around" effect of the mouse is created by making use of the pitch and yaw Euler angles. This is accomplished by finding the offset of the mouse's position from the last frame from which the pitch and yaw is derived, constraining the pitch values, and calculating the direction vector.</p>
 
 <div align="center">
     <table style="width=100%">
@@ -195,7 +195,7 @@ A description of lessons learned. -->
 
 <p>The original <a href="https://gitlab.com/geoff-nagy/laser-demo-simple/tree/master">source code</a> we built off of rendered three lasers, defined by their starting and ending points, that could be viewed from any angle. We were able to modify the source code to allow the player to control the starting and ending position of the laser. We were also able to simulate the laser bouncing off a reflective surface by reflecting the laser across the surface normal; lasers also pass through glass surfaces.</p>
 
-<p>In our attempt to integrate the code into our project, we set one laser with its starting and end point placed in front of the camera. Orthographic matrices are then applied to those vertices to project the laser onto screen space; as a result, the laser is fixed at a constant location on the screen. We were able to have the laser change size and position on the screen as a result of camera movement by passing in the camera's location as the parameters into the orthographic matrix constructor. However, we were unable to make these changes relate to camera movement in a natural way (i.e. interacting with objects in the world), since we were unable to identify where exactly in the source code the laser was being projected to screen space and make the modifications to the laser prior to that projection. As a result, the laser is not included in our final submission.</p>
+<p>In our attempt to integrate the code into our project, we set one laser with its starting and end point placed in front of the camera. Orthographic matrices are then applied to those vertices to project the laser onto screen space; as a result, the laser is fixed at a constant location on the screen. We were able to have the laser change size and position on the screen as a result of camera movement by passing in the camera's location as the parameters into the orthographic matrix constructor. However, we were unable to make these changes relate to camera movement in a natural way (i.e. interacting with objects in the world), since the source code we relied on began by projecting the laser coordinates to a viewPort and then modifying the location in the two dimensional space, and we were unable to undo those applications in the time we had left after figuring out how to combine the relevant OpenGL packages in the same file without erroring out. As a result, the laser is not included in our final submission.</p>
 
 <div align="center">
     <table style="width=100%">
@@ -279,6 +279,7 @@ A description of lessons learned. -->
         <li> <a href="https://learnopengl.com/Getting-started/Camera">First person camera tutorial</a> </li>
         <li> <a href="https://learnopengl.com/Advanced-OpenGL/Cubemaps">Cubemap tutorial</a> </li>
     </ul>
+    <li> <a href="http://www.humus.name/index.php?page=Textures">Cubemap source</a></li>
     <li> <a href="https://www.youtube.com/watch?v=xutvBtrG23A">Cubemap reflections tutorial</a> </li>
     <li> <a href="https://www.youtube.com/watch?v=lW_iqrtJORc">Rendering to cube map texture tutorial</a> </li>
     <li> <a href="https://www.youtube.com/watch?v=bmblOymqfD8">Lasers: Video demo + high level overview</a> </li>
@@ -336,6 +337,7 @@ A description of lessons learned. -->
                     <li> Modified shaders for mirror/glass powerup effects </li>
                     <li> Powerup collision implementation </li>
                     <li> Time-based shaders for color/rotating effect of powerups </li>
+                    <li> Assisted with laser physics </li>
                     <li> Project Milestone writeup </li>
                     <li> Project Milestone video </li>
                     <li> Project Final Presentation slides </li>
@@ -352,10 +354,12 @@ A description of lessons learned. -->
                     <li> Bird's-eye view powerup implementation </li>
                     <li> Implementing switching shaders for other powerups </li>
                     <li> Time-based shaders for color/rotating effect of powerups </li>
-                    <li> Attempted to implement laser </li>
+                    <li> Implement laser </li>
                     <ul>
-                        <li> Integrated laser source code into project </li>
+                        <li> Attempted to integrate laser into project (unused)</li>
                         <li> Laser size/position changes with camera movement </li>
+                        <li> Laser reflects off mirrored surfaces </li>
+                        <li> Laser refracts through glass surfaces</li>
                     </ul>
                     <li> Project Proposal writeup </li>
                     <li> Project Milestone video </li>
