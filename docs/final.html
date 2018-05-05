@@ -138,7 +138,7 @@ A description of lessons learned. -->
 
 <p>The background, mirror walls, and glass walls all make use of <a href="https://learnopengl.com/Advanced-OpenGL/Cubemaps">cubemapping</a>. A <a href="https://www.youtube.com/watch?v=xutvBtrG23A">cubemap</a> is composed of 6 textures that form a cube that completely captures an environment in all directions.</p>
 
-<p>The background is a skybox: a cube that encompasses the entire scene. The cubemap is mapped onto this giant cube and gives the illusion that the player is in a large environment. The shaders are fairly straightfoward, the one point of note being that the position vector passed into the vertex shader is then output as the texture coordinate passed to the fragment shader. For optimization purposes, the skybox is rendered last, which is possible by setting it at maximum depth.</p>
+<p>The background is a skybox: a cube that encompasses the entire scene. The cubemap is mapped onto this giant cube and gives the illusion that the player is in a large environment. The shaders are fairly straightforward, the one point of note being that the position vector passed into the vertex shader is then output as the texture coordinate passed to the fragment shader. For optimization purposes, the skybox is rendered last, which is possible by setting it at maximum depth.</p>
 
 <p>The mirror and glass walls make use of environment mapping of the cubemap. In the reflection fragment shader for the mirror effect, the vector from the view/camera position to the object is calculated and reflected across the surface normal; the skybox is then sampled in the direction of the reflected vector for the final output fragment color. Similarly, the refraction fragment shader refracts the vector according to the ratio of the index of refraction (in the case of glass, 1.00 / 1.52) and samples the skybox for color accordingly.</p>
 
@@ -171,21 +171,25 @@ A description of lessons learned. -->
     </table>
 </div>
 
-<h3 align="left">Laser</h3>
-
 <h3 align="left">Challenges</h3>
 
 <h4 align="left">Setting up and integrating code</h4>
 
 <p>A major obstacle we encountered during the project was setting up OpenGL and all the necessary packages/dependencies in Visual Studio. This was especially frustrating when team members were working on separate parts of the project, and we would encounter countless errors due to missing dependencies/files when attempting to integrate code. One of our team members had additional difficulties in getting Visual Studio set up properly on her Mac. Once we finally sorted out all the packages and files we would need to proceed with the rest of the project, the process became much smoother.</p>
 
+<p>The learning curve for using Visual Studio as a C++ IDE as well as becoming accustomed to OpenGL and all its packages was also very steep. The majority of our first 2-3 weeks was spent with set up and going through basic tutorials.</p>
+
 <h4 align="left">Dynamic environment mapping</h4>
 
-<p>The mirror and glass walls in the maze do not display the other objects in the maze in their reflections/refractions because the shaders use the cubemap of the environment, which does not contain those objects in its textures. In trying to include the other objects in the reflections, we looked into <a href="https://www.youtube.com/watch?v=lW_iqrtJORc">dynamic environment mapping</a>, which dynamically generates cubemaps of the scene as its being rendered. However, this process is extremeley computationally intensive, since a cubemap must be rendered for each reflective/refractive object for it to look correct; in other words, the entire scene must be rendered 6 times per object. One potential workaround is pre-rendering cubemaps; however, our maze environment is randomly generated, so pre-rendering was not an option. Ultimately, we decided to retain the basic environment mapping of the skybox.</p>
+<p>The mirror and glass walls in the maze do not display the other objects in the maze in their reflections/refractions because the shaders use the cubemap of the environment, which does not contain those objects in its textures. In trying to include the other objects in the reflections, we looked into <a href="https://www.youtube.com/watch?v=lW_iqrtJORc">dynamic environment mapping</a>, which dynamically generates cubemaps of the scene as its being rendered. However, this process is extremely computationally intensive, since a cubemap must be rendered for each reflective/refractive object for it to look correct; in other words, the entire scene must be rendered 6 times per object. One potential workaround is pre-rendering cubemaps; however, our maze environment is randomly generated, so pre-rendering was not an option. Ultimately, we decided to retain the basic environment mapping of the skybox.</p>
 
 <h4 align="left">Laser</h4>
 
-<p>Our first idea for implementing a laser was to draw a <a href="https://www.gamedev.net/forums/topic/162583-lasers-in-opengl/">simple line</a> whose appearance we could later modify with textures; however, we found that modern versions of OpenGL (like the one we are using) no longer supports line drawing capabilities. We then found <a href="https://www.youtube.com/watch?v=bmblOymqfD8">other</a> <a href="https://gamecollage.com/how-to/lasers-and-mirrors/">resources</a> for implementing lasers in OpenGL, but the source code used a different package (GLEW) than the one we had been using for the rest of the project (GLAD), which caused a lot of integration issues.</p>
+<p>We originally intended to implement a laser pointer that would follow the camera movement of the player which would help the player distinguish between mirror and glass boxes by the reflection/refraction of the laser. We faced many difficulties when attempting to implement it and were ultimately unable to make it a part of our final project.</p>
+
+<p>Our first idea for implementing a laser was to draw a <a href="https://www.gamedev.net/forums/topic/162583-lasers-in-opengl/">simple line</a> whose appearance we could later modify with textures; however, we found that modern versions of OpenGL (like the one we are using) no longer supports line drawing capabilities. We then found <a href="https://www.youtube.com/watch?v=bmblOymqfD8">other</a> <a href="https://gamecollage.com/how-to/lasers-and-mirrors/">resources</a> for implementing lasers in OpenGL. The source code used a different package (GLEW) than the one we had been using for the rest of the project (GLAD), which caused a lot of integration issues.</p>
+
+<p>The original <a href="https://gitlab.com/geoff-nagy/laser-demo-simple/tree/master">source code</a> we built off of rendered three lasers, defined by their starting and ending points, that could be viewed from any angle. We integrated this code into our project, and modified it so that one laser has its starting and end point placed in front of the camera. Orthographic matrices are then applied to those vertices to project the laser onto screen space; as a result, the laser is fixed at a constant location on the screen. We were able to have the laser change size and position on the screen as a result of camera movement by passing in the camera's location as the parameters in the orthographic matrix constructor. However, we were unable to make these changes relate to camera movement in a natural way (i.e. interacting with objects in the world), since we were unable to identify where exactly in the source code the laser was being projected to screen space and make the modifications to the laser prior to that projection.</p>
 
 <h3 align="left">Lessons learned</h3>
 
@@ -197,8 +201,7 @@ A description of lessons learned. -->
 <!-- Your final images, animations, video of your system (whichever is relevant). You can include results that you think show off what you built but that you did not have time to go over on presentation day. -->
 
 <p align=middle>
-    <video src="images/" controls="controls" width="480" height="360" name="Going through the maze."> </video>
-    <figcaption align="middle">Final video.</figcaption>
+    <a href="">Final video.</a>
 </p> 
 
 <div align="center">
@@ -216,20 +219,6 @@ A description of lessons learned. -->
                 <video src="images/bird.mp4" controls="controls" width="360" height="360" name="Bird's-eye view."> </video>
                 <figcaption align="middle">Bird's-eye view (Y).</figcaption>
             </td>
-        </tr>
-            <td>
-                <video src="images/" controls="controls" width="360" height="360" name="Laser toggle."> </video>
-                <figcaption align="middle">Toggling the laser.</figcaption>
-            </td>
-            <td>
-                <video src="images/" controls="controls" width="360" height="360" name="Laser + mirror."> </video>
-                <figcaption align="middle">Laser-mirror interaction.</figcaption>
-            </td>   
-            <td>
-                <video src="images/" controls="controls" width="360" height="360" name="Laser + glass."> </video>
-                <figcaption align="middle">Laser-glass interaction.</figcaption>
-            </td>
-        <tr>
         </tr>
         <tr>
             <td>
@@ -258,6 +247,20 @@ A description of lessons learned. -->
                 <video src="images/noLaserRun.mp4" controls="controls" width="360" height="360" name="Going through the maze."> </video>
                 <figcaption align="middle">Traversing through the maze.</figcaption>
             </td>  
+        </tr>
+        <tr>
+            <td>
+<!--                 <video src="images/" controls="controls" width="360" height="360" name="Laser toggle."> </video>
+                <figcaption align="middle">Toggling the laser.</figcaption> -->
+            </td>
+            <td>
+                <video src="images/" controls="controls" width="360" height="360" name="Laser + mirror."> </video>
+                <figcaption align="middle">Laser demo.</figcaption>
+            </td>   
+            <td>
+<!--                 <video src="images/" controls="controls" width="360" height="360" name="Laser + glass."> </video>
+                <figcaption align="middle">Laser-glass interaction.</figcaption> -->
+            </td>
         </tr>
     </table>
 </div>
@@ -346,12 +349,10 @@ A description of lessons learned. -->
                     <li> Bird's-eye view powerup implementation </li>
                     <li> Implementing switching shaders for other powerups </li>
                     <li> Time-based shaders for color/rotating effect of powerups </li>
-                    <li> Implemented laser </li>
+                    <li> Attempted to implement laser </li>
                     <ul>
-                        <li> Keybinding for toggling the laser on/off </li>
-                        <li> Laser follows camera movement </li>
-                        <li> Laser reflects off mirrors </li>
-                        <li> Laser refracts through glass </li>
+                        <li> Integrated laser source code into project </li>
+                        <li> Laser size/position changes with camera movement </li>
                     </ul>
                     <li> Project Proposal writeup </li>
                     <li> Project Milestone video </li>
