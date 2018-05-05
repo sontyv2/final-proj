@@ -150,13 +150,13 @@ A description of lessons learned. -->
             <td>
             </td>
             <td>
-                <video src="images/PartyBox.mp4" controls="controls" width="360" height="360" name="Party box."> </video>
+                <video src="images/PartyBox2.mov" controls="controls" width="360" height="360" name="Party box."> </video>
                 <figcaption align="middle">A powerup.</figcaption>
             </td>
         </tr>
         <tr>
             <td>
-                <video src="images/texturedbox.mp4" controls="controls" width="360" height="360" name="Normal box."> </video>
+                <video src="images/texturedbox2.mov" controls="controls" width="360" height="360" name="Normal box."> </video>
                 <figcaption align="middle">An opaque textured box.</figcaption>
             </td>   
             <td>
