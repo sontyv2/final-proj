@@ -85,6 +85,8 @@ A description of lessons learned. -->
 
 <h3 align="left">First-person camera movement</h3>
 
+<p>The matrix representing the <a href="https://learnopengl.com/Getting-started/Camera">view/camera space</a> is derived from the following vectors: the camera position, the camera direction, the right axis, and the up axis. Given the position, direction, and up vectors, GLM's lookAt function creates this matrix for us. By modifying the camera position by a constant distance scaled by some speed every time a direction key &lt;WASD&gt; is pressed, we create the "walking around" effect of the camera. The "looking around" effect of the mouse is created by making use of the pitch and yaw Euler angles. This accomplished by finding the offset of the mouse's position from the last frame from which the pitch and yaw is derived, constraining the pitch values, and calculating the direction vector.</p>
+
 <div align="center">
     <table style="width=100%">
         <tr>
@@ -183,9 +185,13 @@ A description of lessons learned. -->
 
 <h4 align="left">Laser</h4>
 
-<p>The <a href="https://www.youtube.com/watch?v=bmblOymqfD8">original</a> <a href="https://gamecollage.com/how-to/lasers-and-mirrors/">resources</a> we found for implementing lasers in OpenGL ended up being unnecessarily complicated for our purposes. Since the laser we intended to implement would only be protruding from one angle (straight forward from the camera), we would not need to implement a laser viewable from all directions like the tutorials showed. Our next attempt was to draw a <a href="https://www.gamedev.net/forums/topic/162583-lasers-in-opengl/">simple line</a> whose appearance we could later modify with textures; however, we found that modern versions of OpenGL (like the one we are using) no longer supports line drawing capabilities. </p>
+<p>Our first idea for implementing a laser was to draw a <a href="https://www.gamedev.net/forums/topic/162583-lasers-in-opengl/">simple line</a> whose appearance we could later modify with textures; however, we found that modern versions of OpenGL (like the one we are using) no longer supports line drawing capabilities. We then found <a href="https://www.youtube.com/watch?v=bmblOymqfD8">other</a> <a href="https://gamecollage.com/how-to/lasers-and-mirrors/">resources</a> for implementing lasers in OpenGL, but the source code used a different package (GLEW) than the one we had been using for the rest of the project (GLAD), which caused a lot of integration issues.</p>
 
 <h3 align="left">Lessons learned</h3>
+
+<p>The main lesson we learned is that graphics is difficult, even with established packages and utilities, but highly rewarding. While the process of setting up the project, linking all the packages together, getting past the learning curve for OpenGL, and integrating different parts of code was frustrating, being able to see and play with our final results made the effort worth it.</p>
+
+<p>On the more technical side, we learned the power of OpenGL and its ability to render in real-time, as well as the flexibility of shaders in changing the appearance of objects and the viewing perspective of the rendered scene. We also reinforced physics concepts learned in class, such as reflection and refraction for mirror/glass objects, the behavior of light with such objects, and detecting collisions and intersections.</p>
 
 <h2 align="middle">Results</h2>
 <!-- Your final images, animations, video of your system (whichever is relevant). You can include results that you think show off what you built but that you did not have time to go over on presentation day. -->
@@ -211,21 +217,10 @@ A description of lessons learned. -->
                 <figcaption align="middle">Bird's-eye view (Y).</figcaption>
             </td>
         </tr>
-        <tr>
-            <td>
-                <video src="images/glasslight.mp4" controls="controls" width="360" height="360" name="Mirror powers."> </video>
-                <figcaption align="middle">Mirror toggles (U, J).</figcaption>
-            </td>   
-            <td>
-                <video src="images/" controls="controls" width="360" height="360" name="Glass powers."> </video>
-                <figcaption align="middle">Glass toggles (I, K).</figcaption>
-            </td>
             <td>
                 <video src="images/" controls="controls" width="360" height="360" name="Laser toggle."> </video>
                 <figcaption align="middle">Toggling the laser.</figcaption>
-            </td>         
-        </tr>
-        <tr>
+            </td>
             <td>
                 <video src="images/" controls="controls" width="360" height="360" name="Laser + mirror."> </video>
                 <figcaption align="middle">Laser-mirror interaction.</figcaption>
@@ -233,6 +228,31 @@ A description of lessons learned. -->
             <td>
                 <video src="images/" controls="controls" width="360" height="360" name="Laser + glass."> </video>
                 <figcaption align="middle">Laser-glass interaction.</figcaption>
+            </td>
+        <tr>
+        </tr>
+        <tr>
+            <td>
+                <video src="images/mirrorlight.mp4" controls="controls" width="360" height="360" name="Mirror powers."> </video>
+                <figcaption align="middle">Mirror highlight (U).</figcaption>
+            </td>
+            <td>
+                <video src="images/glasslight.mp4" controls="controls" width="360" height="360" name="Glass powers."> </video>
+                <figcaption align="middle">Glass highlight (I).</figcaption>
+            </td>
+            <td>
+                <video src="images/mirrorsolid.mp4" controls="controls" width="360" height="360" name="Mirror powers."> </video>
+                <figcaption align="middle">Mirror->opaque (J).</figcaption>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <video src="images/glasssolid.mp4" controls="controls" width="360" height="360" name="Mirror powers."> </video>
+                <figcaption align="middle">Glass->opaque (K).</figcaption>
+            </td>
+            <td>
+                <video src="images/powers.mp4" controls="controls" width="360" height="360" name="Mirror powers."> </video>
+                <figcaption align="middle">Demo all powerups.</figcaption>
             </td>
             <td>
                 <video src="images/" controls="controls" width="360" height="360" name="Going through the maze."> </video>
@@ -258,6 +278,7 @@ A description of lessons learned. -->
     <li> <a href="https://www.youtube.com/watch?v=bmblOymqfD8">Lasers: Video demo + high level overview</a> </li>
     <li> <a href="https://gamecollage.com/how-to/lasers-and-mirrors/">Lasers: High level overview</a> </li> 
     <li> <a href="https://www.gamedev.net/forums/topic/162583-lasers-in-opengl/">Simple laser implementation</a> </li>
+    <li> <a href="https://screencast-o-matic.com/screen_recorder">Screen recording app</a> </li>
 </ul>
 
 <h2 align="middle">Contributions</h2>
