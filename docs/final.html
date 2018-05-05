@@ -171,6 +171,10 @@ A description of lessons learned. -->
     </table>
 </div>
 
+<h4 align="left">Laser</h4>
+
+<p>See below in the Challenges section for more details.</p>
+
 <h3 align="left">Challenges</h3>
 
 <h4 align="left">Setting up and integrating code</h4>
@@ -189,7 +193,20 @@ A description of lessons learned. -->
 
 <p>Our first idea for implementing a laser was to draw a <a href="https://www.gamedev.net/forums/topic/162583-lasers-in-opengl/">simple line</a> whose appearance we could later modify with textures; however, we found that modern versions of OpenGL (like the one we are using) no longer supports line drawing capabilities. We then found <a href="https://www.youtube.com/watch?v=bmblOymqfD8">other</a> <a href="https://gamecollage.com/how-to/lasers-and-mirrors/">resources</a> for implementing lasers in OpenGL. The source code used a different package (GLEW) than the one we had been using for the rest of the project (GLAD), which caused a lot of integration issues.</p>
 
-<p>The original <a href="https://gitlab.com/geoff-nagy/laser-demo-simple/tree/master">source code</a> we built off of rendered three lasers, defined by their starting and ending points, that could be viewed from any angle. We integrated this code into our project, and modified it so that one laser has its starting and end point placed in front of the camera. Orthographic matrices are then applied to those vertices to project the laser onto screen space; as a result, the laser is fixed at a constant location on the screen. We were able to have the laser change size and position on the screen as a result of camera movement by passing in the camera's location as the parameters in the orthographic matrix constructor. However, we were unable to make these changes relate to camera movement in a natural way (i.e. interacting with objects in the world), since we were unable to identify where exactly in the source code the laser was being projected to screen space and make the modifications to the laser prior to that projection.</p>
+<p>The original <a href="https://gitlab.com/geoff-nagy/laser-demo-simple/tree/master">source code</a> we built off of rendered three lasers, defined by their starting and ending points, that could be viewed from any angle. We were able to modify the source code to allow the player to control the starting and ending position of the laser. We were also able to simulate the laser bouncing off a reflective surface by reflecting the laser across the surface normal; lasers also pass through glass surfaces.</p>
+
+<p>In our attempt to integrate the code into our project, we set one laser with its starting and end point placed in front of the camera. Orthographic matrices are then applied to those vertices to project the laser onto screen space; as a result, the laser is fixed at a constant location on the screen. We were able to have the laser change size and position on the screen as a result of camera movement by passing in the camera's location as the parameters into the orthographic matrix constructor. However, we were unable to make these changes relate to camera movement in a natural way (i.e. interacting with objects in the world), since we were unable to identify where exactly in the source code the laser was being projected to screen space and make the modifications to the laser prior to that projection. As a result, the laser is not included in our final submission.</p>
+
+<div align="center">
+    <table style="width=100%">
+        <tr>
+            <td>
+                <video src="images/lasers.mp4" controls="controls" width="480" height="360" name="Laser + mirror."> </video>
+                <figcaption align="middle">Laser demo.</figcaption>
+            </td>             
+        </tr>    
+    </table>
+</div>
 
 <h3 align="left">Lessons learned</h3>
 
@@ -247,20 +264,6 @@ A description of lessons learned. -->
                 <video src="images/noLaserRun.mp4" controls="controls" width="360" height="360" name="Going through the maze."> </video>
                 <figcaption align="middle">Traversing through the maze.</figcaption>
             </td>  
-        </tr>
-        <tr>
-            <td>
-<!--                 <video src="images/" controls="controls" width="360" height="360" name="Laser toggle."> </video>
-                <figcaption align="middle">Toggling the laser.</figcaption> -->
-            </td>
-            <td>
-                <video src="images/" controls="controls" width="360" height="360" name="Laser + mirror."> </video>
-                <figcaption align="middle">Laser demo.</figcaption>
-            </td>   
-            <td>
-<!--                 <video src="images/" controls="controls" width="360" height="360" name="Laser + glass."> </video>
-                <figcaption align="middle">Laser-glass interaction.</figcaption> -->
-            </td>
         </tr>
     </table>
 </div>
